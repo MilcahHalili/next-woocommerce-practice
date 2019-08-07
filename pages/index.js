@@ -33,6 +33,11 @@ export default class Index extends PureComponent {
             <h3>{product.title.rendered}</h3>
           </div>
         ))}
+        <style jsx>{`
+          img {
+            width: 250px;
+          }
+        `}</style>
       </div>
     );
   }
