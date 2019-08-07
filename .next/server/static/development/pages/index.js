@@ -781,15 +781,15 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      products: []
     };
     this.createMarkup = this.createMarkup.bind();
   }
 
   componentDidMount() {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('https://freckbeauty.com/wp-json/wp/v2/product?_embed').then(posts => {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('https://freckbeauty.com/wp-json/wp/v2/product?_embed').then(products => {
       this.setState({
-        posts: posts.data
+        products: products.data
       });
     });
   }
@@ -807,13 +807,26 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0__["PureComponent"] {
         lineNumber: 29
       },
       __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    }, this.state.products.map(product => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 30
+        lineNumber: 31
       },
       __self: this
-    }, "Sup, World?"));
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: product._embedded['wp:featuredmedia'][0].link,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 32
+      },
+      __self: this
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 33
+      },
+      __self: this
+    }, product.title.rendered))));
   }
 
 }

@@ -11906,7 +11906,7 @@ function (_PureComponent) {
 
     _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(Index).call(this, props));
     _this.state = {
-      posts: []
+      products: []
     };
     _this.createMarkup = _this.createMarkup.bind();
     return _this;
@@ -11917,9 +11917,9 @@ function (_PureComponent) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_6___default.a.get('https://freckbeauty.com/wp-json/wp/v2/product?_embed').then(function (posts) {
+      axios__WEBPACK_IMPORTED_MODULE_6___default.a.get('https://freckbeauty.com/wp-json/wp/v2/product?_embed').then(function (products) {
         _this2.setState({
-          posts: posts.data
+          products: products.data
         });
       });
     }
@@ -11939,13 +11939,28 @@ function (_PureComponent) {
           lineNumber: 29
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 30
-        },
-        __self: this
-      }, "Sup, World?"));
+      }, this.state.products.map(function (product) {
+        return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 31
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
+          src: product._embedded['wp:featuredmedia'][0].link,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 32
+          },
+          __self: this
+        }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h3", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 33
+          },
+          __self: this
+        }, product.title.rendered));
+      }));
     }
   }]);
 

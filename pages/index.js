@@ -6,16 +6,16 @@ export default class Index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      products: []
     };
     this.createMarkup = this.createMarkup.bind();
   }
 
   componentDidMount() {
     axios.get('https://freckbeauty.com/wp-json/wp/v2/product?_embed')
-      .then(posts => {
+      .then(products => {
         this.setState({
-          posts: posts.data
+          products: products.data
         });
       })
   }
@@ -27,7 +27,12 @@ export default class Index extends PureComponent {
   render() {
     return (
       <div>
-        <p>Sup, World?</p>
+        {this.state.products.map(product => (
+          <div>
+            <img src={product._embedded['wp:featuredmedia'][0].link} />
+            <h3>{product.title.rendered}</h3>
+          </div>
+        ))}
       </div>
     );
   }
